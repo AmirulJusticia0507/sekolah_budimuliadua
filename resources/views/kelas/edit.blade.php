@@ -1,3 +1,4 @@
+@extends('layouts.app')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-
+    @section('content')
 <div class="container mt-5">
     <h2>Edit Kelas</h2>
     <form action="{{ route('kelas.update', $kelas->id_kelas) }}" method="POST">
@@ -56,5 +57,6 @@
     });
 @endif
 </script>
+@endsection
 </body>
 </html>

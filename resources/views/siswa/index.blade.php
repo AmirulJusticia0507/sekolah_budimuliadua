@@ -15,8 +15,6 @@
 </head>
 <body>
 
-
-
     @section('content')
     <div class="container mt-5">
         <h2>Data Siswa</h2>

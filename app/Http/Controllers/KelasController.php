@@ -12,7 +12,7 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::all();
+        $kelas = Kelas::all() ?: [];
         return view('kelas.index', compact('kelas'));
     }
 
@@ -32,7 +32,7 @@ class KelasController extends Controller
         $validated = $request->validate([
             'nama_kelas' => 'required|string|max:255',
             'jumlah_siswa' => 'required|integer',
-            'tahun_ajaran' => 'required|string|max:9',
+            'tahun_ajaran' => 'required|string|max:255',
             'status' => 'required|in:aktif,tidak_aktif',
         ]);
 
@@ -66,7 +66,7 @@ class KelasController extends Controller
         $validated = $request->validate([
             'nama_kelas' => 'required|string|max:255',
             'jumlah_siswa' => 'required|integer',
-            'tahun_ajaran' => 'required|string|max:9',
+            'tahun_ajaran' => 'required|string|max:255',
             'status' => 'required|in:aktif,tidak_aktif',
         ]);
 

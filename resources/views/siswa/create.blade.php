@@ -1,3 +1,4 @@
+@extends('layouts.app')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,14 +10,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- SweetAlert2 CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-
+    @section('content')
 <div class="container mt-5">
     <h2>Tambah Siswa</h2>
     <form action="{{ route('siswa.store') }}" method="POST">
         @csrf
+        <div class="mb-3">
+            <label for="nis" class="form-label">NIS</label>
+            <input type="text" class="form-control" id="nis" name="nis" required>
+        </div>
         <div class="mb-3">
             <label for="nama_siswa" class="form-label">Nama Siswa</label>
             <input type="text" class="form-control" id="nama_siswa" name="nama_siswa" required>
@@ -67,5 +73,6 @@
     });
 @endif
 </script>
+@endsection
 </body>
 </html>

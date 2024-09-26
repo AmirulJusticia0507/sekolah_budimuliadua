@@ -31,65 +31,72 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($kelas as $k)
-                <tr>
-                    <td>{{ $k->id_kelas }}</td>
-                    <td>{{ $k->nama_kelas }}</td>
-                    <td>
-                        <!-- Button to trigger modal -->
-                        <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#studentModal-{{ $k->id_kelas }}">
-                            Lihat Detail
-                        </button>
+                @if ($kelas && $kelas->count())
+                    @foreach($kelas as $k)
+                    <tr>
+                        <td>{{ $k->id_kelas }}</td>
+                        <td>{{ $k->nama_kelas }}</td>
+                        <td>
+                            {{ $k->jumlah_siswa }} |
+                            <!-- Button to trigger modal -->
+                            <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#studentModal-{{ $k->id_kelas }}">
+                                Lihat Detail
+                            </button>
 
-                        <!-- Modal for student details -->
-                        <div class="modal fade" id="studentModal-{{ $k->id_kelas }}" tabindex="-1" aria-labelledby="studentModalLabel-{{ $k->id_kelas }}" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="studentModalLabel-{{ $k->id_kelas }}">Detail Siswa di Kelas {{ $k->nama_kelas }}</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <table class="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID Siswa</th>
-                                                    <th>Nama Siswa</th>
-                                                    <th>Alamat</th>
-                                                    <th>Telepon</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach($k->students as $student) <!-- Assuming you have a relation set up in your Kelas model -->
-                                                <tr>
-                                                    <td>{{ $student->id }}</td>
-                                                    <td>{{ $student->nama }}</td>
-                                                    <td>{{ $student->alamat }}</td>
-                                                    <td>{{ $student->telepon }}</td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <!-- Modal for student details -->
+                            <div class="modal fade" id="studentModal-{{ $k->id_kelas }}" tabindex="-1" aria-labelledby="studentModalLabel-{{ $k->id_kelas }}" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="studentModalLabel-{{ $k->id_kelas }}">Detail Siswa di Kelas {{ $k->nama_kelas }}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID Siswa</th>
+                                                        <th>Nama Siswa</th>
+                                                        <th>Alamat</th>
+                                                        <th>Telepon</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($k->siswa as $student) <!-- Assuming you have a relation set up in your Kelas model -->
+                                                    <tr>
+                                                        <td>{{ $student->id }}</td>
+                                                        <td>{{ $student->nama }}</td>
+                                                        <td>{{ $student->alamat }}</td>
+                                                        <td>{{ $student->telepon }}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>{{ $k->tahun_ajaran }}</td>
-                    <td>{{ $k->status }}</td>
-                    <td>
-                        <a href="{{ route('kelas.edit', $k->id_kelas) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('kelas.destroy', $k->id_kelas) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
+                        </td>
+                        <td>{{ $k->tahun_ajaran }}</td>
+                        <td>{{ $k->status }}</td>
+                        <td>
+                            <a href="{{ route('kelas.edit', $k->id_kelas) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('kelas.destroy', $k->id_kelas) }}" method="POST" style="display:inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                @else
+                    <tr>
+                        <td colspan="6" class="text-center">Tidak ada data kelas.</td>
+                    </tr>
+                @endif
             </tbody>
         </table>
     </div>

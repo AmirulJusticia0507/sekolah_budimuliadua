@@ -12,16 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('siswa', function (Blueprint $table) {
-            $table->integer('nis')->primary(); // Primary Key: NIS
-            $table->string('nama_siswa', 255); // Nama Siswa
-            $table->unsignedBigInteger('id_kelas'); // Foreign Key: id_kelas
-            $table->enum('kelamin', ['laki-laki', 'perempuan']); // Kelamin
-            $table->string('nama_ayah', 255); // Nama Ayah
-            $table->string('nama_ibu', 255); // Nama Ibu
-            $table->string('alamat', 255); // Alamat
+            $table->id(); // optional if you don't use auto-incrementing ID
+            $table->string('nis', 10)->unique(); // Ensure unique NIS
+            $table->string('nama_siswa');
+            $table->unsignedBigInteger('id_kelas');
+            $table->enum('kelamin', ['Laki-laki', 'Perempuan']);
+            $table->string('nama_ayah');
+            $table->string('nama_ibu');
+            $table->string('alamat');
             $table->timestamps();
 
-            // Relasi ke tabel kelas
+            // Foreign key constraint if necessary
             $table->foreign('id_kelas')->references('id_kelas')->on('kelas')->onDelete('cascade');
         });
     }

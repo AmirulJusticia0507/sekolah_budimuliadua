@@ -111,9 +111,15 @@ CREATE TABLE `kelas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_kelas`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `kelas` */
+
+insert  into `kelas`(`id_kelas`,`nama_kelas`,`jumlah_siswa`,`tahun_ajaran`,`status`,`created_at`,`updated_at`) values 
+(1,'IX A',0,'2021/2022','aktif','2024-09-26 14:29:41','2024-09-26 14:29:41'),
+(2,'IX B',0,'2021/2022','aktif','2024-09-26 14:29:50','2024-09-26 14:29:50'),
+(3,'IX C',0,'2021/2022','aktif','2024-09-26 14:29:59','2024-09-26 14:29:59'),
+(4,'VII A',0,'2021/2022','aktif','2024-09-26 14:30:07','2024-09-26 14:30:07');
 
 /*Table structure for table `migrations` */
 
@@ -167,7 +173,7 @@ CREATE TABLE `sessions` (
 /*Data for the table `sessions` */
 
 insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values 
-('4kBbqIj7wwx6ynt1yopNxLXP1cFKMKcQvIY5TQrA',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoia1lyaTVOZ3BOOU5SYVVpNHJYVjF5SFZPWkRFT0VDaDk4d0x3TG5QaSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zaXN3YS9jcmVhdGUiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',1727356744);
+('4kBbqIj7wwx6ynt1yopNxLXP1cFKMKcQvIY5TQrA',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoia1lyaTVOZ3BOOU5SYVVpNHJYVjF5SFZPWkRFT0VDaDk4d0x3TG5QaSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zaXN3YSI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==',1727361817);
 
 /*Table structure for table `siswa` */
 
@@ -189,6 +195,10 @@ CREATE TABLE `siswa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `siswa` */
+
+insert  into `siswa`(`nis`,`nama_siswa`,`id_kelas`,`kelamin`,`nama_ayah`,`nama_ibu`,`alamat`,`created_at`,`updated_at`) values 
+(1209819830,'Indah Pritani',4,'laki-laki','Sutejo Raharja','Retnoi Sari','Dusun Jambu, RT/RW 002/003, Desa Jeruk, Kec. Jeruk, Kab. Pacitan, Jawa Timur','2024-09-26 14:31:23','2024-09-26 14:32:09'),
+(1209819835,'Kartini Permata Indah',4,'laki-laki','Bagong Gumelar','Jumiati','Dusun Krajan, RT/RW 004/003, Desa Jeruk, Kec. Jeruk, Kab. Pacitan, Jawa Timur','2024-09-26 14:31:53','2024-09-26 14:34:55');
 
 /*Table structure for table `users` */
 
